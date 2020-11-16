@@ -9,10 +9,13 @@ import outfit.legs.KneeArmor;
 import outfit.legs.MotoBoots;
 import outfit.legs.MotoPants;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
-public class WritedData {
+public class RunApp {
 
     static List<? extends BikerOutfit> outfit = Arrays.asList(
             new MotoHelmet("Scorpion EXO-R420", 150, 1.5, PartOfTheBody.HEAD),
@@ -37,5 +40,27 @@ public class WritedData {
             new ElbowArmor("Scorpion SAS-TECH",35, 0.3, PartOfTheBody.ARMS),
             new ElbowArmor("Leatt 3DF6.0",85,0.4,PartOfTheBody.ARMS)
     );
+
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Hello! Welcome to our app. Choose your action(pls input number):");
+        System.out.println("Biker's outfit->1 | Finq outfit by price->2 | Sort equip by weight->3");
+        Biker biker = new Biker();
+        String inputLine = reader.readLine();
+        switch (inputLine){
+            case"1":
+                biker.collectOutfit((outfit));
+                break;
+            case"2":
+                biker.findOutfitByPriceRange(outfit);
+                break;
+            case"3":
+                biker.sortByWeight(outfit);
+                biker.printList(outfit);
+                break;
+        }
+    }
+
 
 }
